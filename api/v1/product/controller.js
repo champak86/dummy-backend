@@ -52,7 +52,7 @@ const getFiles = async (req, res) => {
   const skip = (page - 1) * limit;
   try {
     const count = await File.find().count();
-    const files = await File.find().find().skip(skip).limit(limit);
+    const files = await File.find().find().skip(skip).limit(limit).sort({created_at: -1});
     return res.json({
       data: files,
       count,
